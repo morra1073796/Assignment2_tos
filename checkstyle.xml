@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <module name="TreeWalker">
+
+	<!--metriche-->
+        <module name="BooleanExpressionComplexity"/>
+        <module name="CyclomaticComplexity"/>
+	<!--fine metriche-->        
+	
+	<!--size violation-->
+	<module name="MethodLength"/>
+	<!--fine size violation-->
+    
+	<!--block checks-->
+        <module name="EmptyCatchBlock">
+            <property name="exceptionVariableName" value="expected|ignore"/>
+        </module>
+        <!--fine block checks-->
+	
+	<!--import-->
+	<module name="AvoidStarImport"/>
+        <module name="IllegalImport"/>
+	<!--fine import-->
+        
+	<!--block check-->
+	<module name="NeedBraces">
+            <property name="allowSingleLineStatement" value="true"/>
+        </module>
+	<!--fine block check-->
+	
+    </module>
+
+    <!--size violation-->
+    <module name="FileLength"/>
+    <module name="LineLength"/>
+    <!--fine size violation-->
+
+    <!--whitespace-->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+    <!--fine whitespace-->
+
+    <module name="Header">
+        <property name="header"
+                value="////////////////////////////////////////////////////////////////////\n// [Maria] [Morra] [1073796]\n////////////////////////////////////////////////////////////////////"/>
+    </module>
+</module>
