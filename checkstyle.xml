@@ -4,8 +4,12 @@
     <module name="TreeWalker">
 
 	<!--metriche-->
-        <module name="BooleanExpressionComplexity"/>
-        <module name="CyclomaticComplexity"/>
+        <module name="BooleanExpressionComplexity">
+		<property name="max" value="3"/>
+	</module>
+        <module name="CyclomaticComplexity">
+		<property name="max" value="3"/>
+	</module>
 	<!--fine metriche-->        
 	
 	<!--size violation-->
@@ -32,14 +36,16 @@
     </module>
 
     <!--size violation-->
-    <module name="FileLength"/>
-    <module name="LineLength"/>
+    <module name="FileLength">
+	<property name="max" value="2500"/>
+    </module>
+    <module name="LineLength">
+	<property name="max" value="120"/>
+    </module>
     <!--fine size violation-->
 
     <!--whitespace-->
-    <module name="FileTabCharacter">
-        <property name="eachLine" value="true"/>
-    </module>
+    <module name="FileTabCharacter"/>
     <!--fine whitespace-->
 
     <module name="Header">
