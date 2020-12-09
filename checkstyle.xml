@@ -5,10 +5,10 @@
 
 	<!--metriche-->
         <module name="BooleanExpressionComplexity">
-		<property name="max" value="3"/>
+		<property name="max" value="5"/>
 	</module>
         <module name="CyclomaticComplexity">
-		<property name="max" value="10"/>
+		<property name="max" value="15"/>
 	</module>
 	<!--fine metriche-->        
 	
