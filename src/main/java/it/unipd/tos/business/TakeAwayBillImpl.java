@@ -16,11 +16,20 @@ import it.unipd.tos.modello.User;
 public class TakeAwayBillImpl implements TakeAwayBill {
 
     private LocalTime timeOfOrder; 
-
+    private int countFree;
+    
     TakeAwayBillImpl(){
         this.timeOfOrder= LocalTime.now();
+        this.countFree = 0;
     }
 
+    private void resetFreeByTime() {
+        if((timeOfOrder.compareTo(LocalTime.of(18, 0)) <= 0 || timeOfOrder.compareTo(LocalTime.of(20, 0)) >= 0) 
+        && countFree != 0) {
+           countFree = 0;
+        }
+    }
+    
     //funzione per effettuare i test
     void setTime(LocalTime timeOfOrder){
         this.timeOfOrder= timeOfOrder;
@@ -29,6 +38,9 @@ public class TakeAwayBillImpl implements TakeAwayBill {
     //getter
     LocalTime getTime() {
         return timeOfOrder;
+    }
+    int getCountFree() {
+        return countFree;
     }
     //fine getter 
     
@@ -41,7 +53,9 @@ public class TakeAwayBillImpl implements TakeAwayBill {
         double total = 0.0;
         int countIcecreams = 0;
         double cheapestIcecream = 0.0;
-        int countFree = 0;
+        //resetta countFree a zero finita l'happy hour (prima delle 18 o dopo le 19)
+        resetFreeByTime();
+        //calcolo totale
         for(MenuItem item : itemsOrdered) {
             total += item.getPrice();
             if(item.getItemType() == itemType.GELATO) {
@@ -64,11 +78,11 @@ public class TakeAwayBillImpl implements TakeAwayBill {
             total = total * 90.0 / 100.0;
         }
         //lotteria serale per minorenni
-        if (user.getAge() < 18 && ChronoUnit.HOURS.between(LocalTime.of(19, 0), timeOfOrder) <= 1 
-        && ChronoUnit.HOURS.between(LocalTime.of(19, 0), timeOfOrder) >= 0) {
+        if (user.getAge() < 18 && 
+        (timeOfOrder.compareTo(LocalTime.of(18, 0)) >= 0 && timeOfOrder.compareTo(LocalTime.of(20, 0)) < 0)) {
             if(Math.random() < 0.5D && countFree<10) {
                 total = 0;
-                countFree++;
+                countFree+= 1;
             }
         }
         return total;
