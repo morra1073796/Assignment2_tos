@@ -84,4 +84,14 @@ public class TakeAwayBillImpl_Test {
         double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
         assertEquals(51.75D, total, 0.0D);
     }
+    
+    @Test
+    public void TakeAwayBillImpl_commisionOrderCalculationWorks_Test() throws TakeAwayBillException {
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Coca Cola", 1.5D, MenuItem.itemType.BEVANDA));
+
+        double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
+        assertEquals(8.0D, total, 0.0D);
+    }
 }
