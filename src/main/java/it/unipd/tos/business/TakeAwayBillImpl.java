@@ -21,16 +21,20 @@ public class TakeAwayBillImpl implements TakeAwayBill {
         this.timeOfOrder= LocalTime.now();
     }
 
+    //funzione per effettuare i test
     void setTime(LocalTime timeOfOrder){
         this.timeOfOrder= timeOfOrder;
     }
     
+    //getter
     LocalTime getTime() {
         return timeOfOrder;
     }
+    //fine getter 
     
     @Override
     public double getOrderPrice(List<MenuItem> itemsOrdered, User user) throws TakeAwayBillException {
+        //lancio eccezione
         if (itemsOrdered.size() > 30) {
             throw new TakeAwayBillException();
         }
@@ -47,20 +51,25 @@ public class TakeAwayBillImpl implements TakeAwayBill {
                 }
             }
         }
+        //commissione
         if(total < 10.0) {
             total += 0.5;
         }
+        //sconto sul gelato meno costoso
         if(countIcecreams > 5) {
             total -= cheapestIcecream / 2;
         }
+        //sconto sul totale
         if(total > 50.0) {
             total = total * 90.0 / 100.0;
         }
+        //lotteria serale per minorenni
         if (user.getAge() < 18 && ChronoUnit.HOURS.between(LocalTime.of(19, 0), timeOfOrder) <= 1 
-        && ChronoUnit.HOURS.between(LocalTime.of(19, 0), timeOfOrder) >= 0 
-        && Math.random() < 0.5D && countFree<10) {
-            total = 0;
-            countFree++;
+        && ChronoUnit.HOURS.between(LocalTime.of(19, 0), timeOfOrder) >= 0) {
+            if(Math.random() < 0.5D && countFree<10) {
+                total = 0;
+                countFree++;
+            }
         }
         return total;
     }

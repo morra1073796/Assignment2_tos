@@ -11,9 +11,9 @@ public class MenuItem {
         GELATO, BUDINO, BEVANDA
     };
 
-    private String name;
-    private double price;
-    private itemType itemType;
+    private final String name;
+    private final double price;
+    private final itemType itemType;
 
     //costruttore
     public MenuItem(String name, double price, itemType itemType) {
