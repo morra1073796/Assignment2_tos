@@ -31,4 +31,19 @@ public class TakeAwayBillImpl_Test {
         double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
         assertEquals(15.0D, total, 0.0D);
     }
+    
+    @Test
+    public void TakeAwayBillImpl_fiveIcecreamsPlusOrderCalculationWorks_Test() throws TakeAwayBillException {
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coca Cola", 1.5D, MenuItem.itemType.BEVANDA));
+
+        double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
+        assertEquals(34.5D, total, 0.0D);
+    }
 }

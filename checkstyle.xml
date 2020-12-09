@@ -8,7 +8,7 @@
 		<property name="max" value="3"/>
 	</module>
         <module name="CyclomaticComplexity">
-		<property name="max" value="3"/>
+		<property name="max" value="10"/>
 	</module>
 	<!--fine metriche-->        
 	
