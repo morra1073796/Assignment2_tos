@@ -39,11 +39,49 @@ public class TakeAwayBillImpl_Test {
         itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
         itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
         itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 4.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coca Cola", 1.5D, MenuItem.itemType.BEVANDA));
+
+        double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
+        assertEquals(33.5D, total, 0.0D);
+    }
+    
+    @Test
+    public void TakeAwayBillImpl_fiftyPlusSimpleOrderCalculationWorks_Test() throws TakeAwayBillException {
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
         itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
         itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
         itemsOrdered.add(new MenuItem("Coca Cola", 1.5D, MenuItem.itemType.BEVANDA));
 
         double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
-        assertEquals(34.5D, total, 0.0D);
+        assertEquals(55.35D, total, 0.0D);
+    }
+    
+    @Test
+    public void TakeAwayBillImpl_fiftyPlusAndFiveIcecreamsOrderCalculationWorks_Test() throws TakeAwayBillException {
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.BUDINO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 4.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coppa Nafta", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Biancaneve", 6.0D, MenuItem.itemType.GELATO));
+        itemsOrdered.add(new MenuItem("Coca Cola", 1.5D, MenuItem.itemType.BEVANDA));
+
+        double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
+        assertEquals(51.75D, total, 0.0D);
     }
 }

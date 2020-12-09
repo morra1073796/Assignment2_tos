@@ -30,6 +30,9 @@ public class TakeAwayBillImpl implements TakeAwayBill {
         if(countIcecreams >= 5) {
             total -= cheapestIcecream / 2;
         }
+        if(total >= 50.0) {
+            total = total * 90.0 / 100.0;
+        }
         return total;
     }
 }
