@@ -15,6 +15,9 @@ public class TakeAwayBillImpl implements TakeAwayBill {
 
     @Override
     public double getOrderPrice(List<MenuItem> itemsOrdered, User user) throws TakeAwayBillException {
+        if (itemsOrdered.size() > 30) {
+            throw new TakeAwayBillException();
+        }
         double total = 0.0;
         int countIcecreams = 0;
         double cheapestIcecream = 0.0;

@@ -8,6 +8,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Test;
 
@@ -93,5 +95,14 @@ public class TakeAwayBillImpl_Test {
 
         double total = orderCalculator.getOrderPrice(itemsOrdered, new User("Pinko", "Pallino", 19));
         assertEquals(8.0D, total, 0.0D);
+    }
+    
+    @Test(expected = TakeAwayBillException.class)
+    public void TakeAwayBillImpl_overSizedOrder_Test() throws TakeAwayBillException {
+        MenuItem item = new MenuItem("Banana Split", 10.0D, MenuItem.itemType.BUDINO);
+        Stream<MenuItem> gelati = Stream.generate(() -> item);
+        List<MenuItem> items = gelati.limit(31).collect(Collectors.toList());
+
+        double total = orderCalculator.getOrderPrice(items, new User("Pinko", "Pallino", 19));
     }
 }
